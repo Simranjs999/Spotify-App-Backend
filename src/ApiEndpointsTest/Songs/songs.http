@@ -1,0 +1,63 @@
+### Sign up (only run once per email)
+POST http://localhost:3000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "Password123!"
+}
+
+### Log in (get JWT token)
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "Password123!"
+}
+
+### Set token variable (update this with your actual token)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTQ3OTk3MTksImV4cCI6MTc1NDgwMzMxOX0.tfaXwHfPchwtZb2BjkGtoIyBZA4uAwgfm-YJzCdyikg
+
+### Create Artist (required before creating a song)
+POST http://localhost:3000/api/v1/artists
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Song Artist",
+  "biography": "Artist for song testing"
+}
+
+### Create Song (replace artistId with actual ID from previous response)
+POST http://localhost:3000/api/v1/songs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Test Song",
+  "duration": 210,
+  "artistId": 3
+}
+
+### Get All Songs
+GET http://localhost:3000/api/v1/songs
+Authorization: Bearer {{token}}
+
+### Get Song by ID (replace 1 with actual song ID)
+GET http://localhost:3000/api/v1/songs/1
+Authorization: Bearer {{token}}
+
+### Update Song (replace 1 with actual song ID)
+PUT http://localhost:3000/api/v1/songs/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Updated Song Title",
+  "duration": 180
+}
+
+### (Optional) Delete Song (if implemented, replace 1 with actual song ID)
+DELETE http://localhost:3000/api/v1/songs/1
+Authorization: Bearer {{token}}

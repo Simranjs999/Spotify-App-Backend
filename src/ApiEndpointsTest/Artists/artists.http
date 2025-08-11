@@ -1,0 +1,52 @@
+### Sign up (only run once per email)
+POST http://localhost:3000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "Password123!"
+}
+
+### Log in (get JWT token)
+POST http://localhost:3000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "Password123!"
+}
+
+### Set token variable (update this with your actual token)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjUsImVtYWlsIjoidGVzdHVzZXJAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTQ3OTk0NzgsImV4cCI6MTc1NDgwMzA3OH0.8FY8iaAmhwGB5T3v2SXix6wY_HPwYYZ2Bn2N1zFqFDI
+
+### Create Artist
+POST http://localhost:3000/api/v1/artists
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Test Artist 2",
+  "biography": "A test artist for API testing 2."
+}
+
+### Get All Artists
+GET http://localhost:3000/api/v1/artists
+Authorization: Bearer {{token}}
+
+### Get Artist by ID (replace 1 with actual artist ID)
+GET http://localhost:3000/api/v1/artists/1
+Authorization: Bearer {{token}}
+
+### Update Artist (replace 1 with actual artist ID)
+PUT http://localhost:3000/api/v1/artists/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Updated Artist Name",
+  "biography": "Updated biography"
+}
+
+### Delete Artist (replace 1 with actual artist ID)
+DELETE http://localhost:3000/api/v1/artists/1
+Authorization: Bearer {{token}}
